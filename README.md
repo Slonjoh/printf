@@ -37,7 +37,8 @@ Run the compiled executable:
 $ ./printf
 
 ## File Functions
-_printf.c
+
+## _printf.c
 Prints any string according to format
 
 ## Authors
