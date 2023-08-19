@@ -31,6 +31,8 @@ int _printf(const char *format, ...)
                 else
                 {
                         a++;
+			if (format[a] == '\0')
+				break;
                         if (format[a] == 'c')
                         {
                                 s = va_arg(the_arguments, int);
