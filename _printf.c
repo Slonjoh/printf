@@ -1,83 +1,30 @@
 #include "main.h"
-#include <stdarg.h>
-#include <stdlib.h>
-#include <unistd.h>
 
 /**
- * _printf - Produces output according to a format.
- * @format: The format string containing directives.
+ * _printf - Produces output according to a format
+ * @format: Is a character string. The format string
+ * is composed of zero or more directives
  *
- * Return: The number of characters printed (excluding the null byte).
- */
-
+ * Return: The number of characters printed (excluding
+ * the null byte used to end output to strings)
+ **/
 int _printf(const char *format, ...)
 {
-	va_list the_arguments;
-	int count = 0;
-	int a;
-	char s;
-	buffer *buf;
+	int size;
+	va_list args;
 
-	buf = buf_new();
-	if (buf == NULL)
+	if (format == NULL)
 		return (-1);
 
-	va_start(the_arguments, format);
+	size = _strlen(format);
+	if (size <= 0)
+		return (0);
 
-	if (!format)
-	{
-		buf_end(buf);
-		va_end(the_arguments);
-		return (-1);
-	}
-		for (a = 0; format[a] != '\0'; a++)
-		{
-			buf_wr(buf);
-			if (format[a] == '%')
-			{
-				a++;
-				if (format[a] == 'c')
-				{
-					s = va_arg(the_arguments, int);
-					buf->str[buf->index] = s;
-					buf_inc(buf);
-					count++;
-				}
-			}
-			else if (format[a] == 's')
-			{
-				char *str = va_arg(the_arguments, char *);
-				if (str)
-				{
-					int len = 0;
-					int i;
-					while (str[len] != '\0')
-						len++;
-					for (i = 0; i < len; i++)
-					{
-						buf->str[buf->index] = str[i];
-						buf_inc(buf);
-					}
-					count += len;
-				}
-			}
-			else if (format[a] == '%')
-			{
-				buf->str[buf->index] = '%';
-				buf_inc(buf);
-				count++;
-			}
-		}
+	va_start(args, format);
+	size = handler(format, args);
 
-		buf->str[buf->index] = format[a];
-		buf_inc(buf);
-		count++;
+	_putchar(-1);
+	va_end(args);
 
-	buf_write(buf);
-	if (count >= 0)
-		a = buf->overflow;
-	buf_end(buf);
-
-	va_end(the_arguments);
-	return (count);
+	return (size);
 }
