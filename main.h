@@ -25,6 +25,7 @@ void buf_inc(buffer *buf);
 void buf_write(buffer *buf);
 void buf_end(buffer *buf);
 
+
 /* Function prototype */
 int _printf(const char *format, ...);
 
