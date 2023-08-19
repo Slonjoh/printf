@@ -43,12 +43,11 @@ int _printf(const char *format, ...)
 				char *str = va_arg(the_arguments, char *);
 				if (str)
 				{
+					int len = 0;
 					while (str[len] != '\0')
-					{
 						len++;
-						write(1, str, len);
-						count += len;
-					}
+					write(1, str, len);
+					count += len;
 				}
 			}
 			else if (format[a] == '%')
