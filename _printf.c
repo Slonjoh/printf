@@ -43,11 +43,11 @@ int _printf(const char *format, ...)
 				char *str = va_arg(the_arguments, char *);
 				if (str)
 				{
-					while (*str != '\0')
+					while (str[len] != '\0')
 					{
-						write(1, str, 1);
-						str++;
-						count++;
+						len++;
+						write(1, str, len);
+						count += len;
 					}
 				}
 			}
