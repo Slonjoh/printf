@@ -8,6 +8,7 @@ The `_printf()` function performs formatted output conversion and prints data. I
 
 ```c
 int _printf(const char *format, ...);
+```
 ## Format Tags
 The format tags follow this prototype
 %[flags][length]specifier
@@ -25,8 +26,10 @@ Key identifiers include:
     %r: String printing in reverse
     %R: String printing in ROT13
     %p: Printing memory addresses.
+
+
 ## Installation and Usage
-Compile the project using:
+1. Compile the project using:
 
 $ gcc -Wall -Wextra -Werror -pedantic -std=gnu89 -Wno-format *.c
 
