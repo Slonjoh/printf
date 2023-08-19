@@ -6,6 +6,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+#define BUFFER_SIZE 1024
+
 /**
  * struct buffer - A buffer structure for handling formatted output.
  * @str: The buffer string.
