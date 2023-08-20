@@ -51,15 +51,7 @@ int _printf(const char *format, ...)
                         }
 			else if (format[a] == 'b')
 			{
-				int value;
-
-				value = va_arg(the_arguments, int);
-				if (value < 0)
-				{
-					write(1, "-", 1);
-					count++;
-					value = -value;
-				}
+				unsigned int value = va_arg(the_arguments, unsigned int);
 				count += print_binary(value);
 			}
                         else if (format[a] == '%')

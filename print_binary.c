@@ -11,13 +11,27 @@
 int print_binary(unsigned int n)
 {
 	int count = 0;
-	unsigned int mask = 1 << (sizeof(unsigned int) * 8 - 1);
+	int started = 0;
+	int i;
 
-	while (mask > 0)
+	for (i = (sizeof(unsigned int) * 8) - 1; i >= 0; i--)
 	{
-		write(1, ((n & mask) != 0) ? "1" : "0", 1);
+		if ((n >> i) & 1)
+		{
+			write(1, "1", 1);
+			count++;
+			started = 1;
+		}
+		else if (started)
+		{
+			write(1, "0", 1);
+			count++;
+		}
+	}
+	if (!started)
+	{
+		write(1, "0", 1);
 		count++;
-		mask >>= 1;
 	}
 
 	return (count);
