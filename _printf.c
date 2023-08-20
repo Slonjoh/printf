@@ -1,5 +1,6 @@
 #include "main.h"
-
+#include "print_binary.c"
+#include <stdlib.h>
 /**
  * _printf - Produces output according to a format.
  * @format: The format string containing directives.
@@ -51,8 +52,15 @@ int _printf(const char *format, ...)
                         }
 			else if (format[a] == 'b')
 			{
-				unsigned int value;
-				value = va_arg(the_arguments, unsigned int);
+				int value;
+
+				value = va_arg(the_arguments, int);
+				if (value < 0)
+				{
+					write(1, "-", 1);
+					count++;
+					value = -value;
+				}
 				count += print_binary(value);
 			}
                         else if (format[a] == '%')
