@@ -51,6 +51,11 @@ int _printf(const char *format, ...)
                                         count += len;
                                 }
                         }
+			else if (format[a] == 'b')
+			{
+				unsigned int value = va_arg(the_arguments, unsigned int)
+					count += print_binary(value);
+			}
                         else if (format[a] == '%')
                         {
                                 write(1, &format[a], 1);
