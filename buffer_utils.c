@@ -29,18 +29,3 @@ void buf_write(buffer *buf)
 	write(1, buf->str, buf->index);
 	buf->index = 0;
 }
-
-int _putchar(char c)
-{
-	buffer *buf = buf_new();
-	if (!buf)
-		return (-1);
-
-	buf->str[buf->index] = c;
-	buf_inc(buf);
-
-	buf_write(buf);
-	buf_end(buf);
-
-	return (1);
-}
