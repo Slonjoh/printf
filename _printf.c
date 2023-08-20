@@ -1,6 +1,4 @@
 #include "main.h"
-#include <stdarg.h>
-#include <unistd.h>
 
 /**
  * _printf - Produces output according to a format.
@@ -12,27 +10,27 @@
 int _printf(const char *format, ...)
 {
 	va_list the_arguments;
-        int count = 0;
-        int a;
-        char s;
+	int count = 0;
+	int a;
+	char s;
 
-        va_start(the_arguments, format);
+	va_start(the_arguments, format);
 
-        if (!format)
-                return (-1);
-
-        for (a = 0; format[a] != '\0'; a++)
-        {
-                if (format[a] != '%')
-                {
-                        write(1, &format[a], 1);
-                        count++;
-                }
-                else
-                {
-                        a++;
+	if (!format)
+		return (-1);
+	for (a = 0; format[a] != '\0'; a++)
+	{
+		if (format[a] != '%')
+		{
+			write(1, &format[a], 1);
+			count++;
+		}
+		else
+		{
+			a++;
 			if (format[a] == '\0')
 				break;
+
                         if (format[a] == 'c')
                         {
                                 s = va_arg(the_arguments, int);
@@ -70,6 +68,41 @@ int _printf(const char *format, ...)
                 }
         }
 
-        va_end(the_arguments);
-        return (count);
+			if (format[a] == 'c')
+			{
+				s = va_arg(the_arguments, int);
+				write(1, &s, 1);
+				count++;
+			}
+			else if (format[a] == 's')
+			{
+				char *str = va_arg(the_arguments, char *);
+
+				if (str)
+				{
+					int len = 0;
+
+					while (str[len] != '\0')
+						len++;
+					write(1, str, len);
+					count += len;
+				}
+			}
+			else if (format[a] == '%')
+			{
+				write(1, &format[a], 1);
+				count++;
+			}
+			else
+			{
+				write(1, "%", 1);
+				write(1, &format[a], 1);
+				count += 2;
+			}
+		}
+	}
+
+
+	va_end(the_arguments);
+	return (count);
 }
