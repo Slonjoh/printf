@@ -5,7 +5,7 @@
 /**
  * print_binary - Prints the binary representation of an unsigned integer.
  * @n: The unsigned integer to be converted and printed.
- * 
+ *
  * Return: The number of characters printed.
  */
 int print_binary(unsigned int n)
