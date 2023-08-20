@@ -1,5 +1,4 @@
 #include "main.h"
-#include "print_binary.c"
 #include <stdlib.h>
 /**
  * _printf - Produces output according to a format.

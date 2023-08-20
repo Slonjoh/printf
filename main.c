@@ -1,5 +1,6 @@
 #include "main.h"
 #include "_printf.c"
+#include "print_binary.c"
 /**
  * main - Entry point
  *
