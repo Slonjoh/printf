@@ -17,17 +17,16 @@ int print_strings(char *str)
 
 		for (len = 0; str[len] != '\0'; len++)
 		{
-			if (str[len] == '\n')
-			{
-				write(1, "\\x0A", 4);
-				count += 4;
-			}
-			else if (str[len] < 32 || str[len] >= 127)
+			if (str[len] < 32 || str[len] >= 127)
 			{
 				write(1, "\\x", 2);
 				count += 2;
-				printf("%02X", (unsigned char)str[len]);
-				count += 2;
+				count += print_hex((unsigned char)str[len], 1);
+			}
+			else if (str[len] == '\n')
+			{
+				write(1, "\\x0A", 4);
+				count += 4;
 			}
 			else
 			{
