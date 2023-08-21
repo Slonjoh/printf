@@ -90,6 +90,13 @@ int _printf(const char *format, ...)
 				uppercase = (format[a] == 'X') ? 1 : 0;
 				count += print_hex(value, uppercase);
 			}
+			else if (format[a] == 'S')
+			{
+				char *str;
+
+				str = va_arg(the_arguments, char *);
+				count += print_strings(str);
+			}
 			else if (format[a] == '%')
 			{
 				write(1, &format[a], 1);

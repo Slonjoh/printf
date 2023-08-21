@@ -35,6 +35,7 @@ int print_int(int n);
 int print_unsigned(unsigned int n);
 int print_octal(unsigned int n);
 int print_hex(unsigned int n, int uppercase);
+int print_strings(char *str);
 int _putchar(char c);
 
 #endif /*MAIN_H*/
