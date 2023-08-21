@@ -102,6 +102,28 @@ int _printf(const char *format, ...)
 				void *ptr = va_arg(the_arguments, void *);
 				count += print_pointer(ptr);
 			}
+			else if (format[a] == '+')
+			{
+				int plus = 0
+
+				plus = va_arg(the_arguments, int);
+				count += _plus_flag(plus);
+			}
+			else if (format[a] == ' ')
+			{
+				int space = 0;
+
+				space = va_arg(the_arguments, int);
+				count += _space_flag(space);
+
+			}
+			else if (format[a] == '#')
+			{
+				int hash = 0;
+
+				hash = va_arg(the_arguments, int);
+				count += _hash_flag(hash);
+			}
 			else if (format[a] == '%')
 			{
 				write(1, &format[a], 1);
