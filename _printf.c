@@ -31,9 +31,9 @@ int _printf(const char *format, ...)
 			if (format[a] == '\0')
 				break;
 
-                        if (format[a] == 'c' || format[a] == '%')
+                        if (format[a] == 'c')
                         {
-				s = (char) va_arg(the_arguments, int);
+				s = va_arg(the_arguments, int);
 				write(1, &s, 1);
 				count++;
                         }
@@ -89,6 +89,11 @@ int _printf(const char *format, ...)
 				value = va_arg(the_arguments, unsigned int);
 				uppercase = (format[a] == 'X') ? 1 : 0;
 				count += print_hex(value, uppercase);
+			}
+			else if (format[a] == '%')
+			{
+				write(1, &format[a], 1);
+				count++;
 			}
                         else
                         {
