@@ -99,7 +99,8 @@ int _printf(const char *format, ...)
 			}
 			else if (format[a] == 'p')
 			{
-				count += print_pointer((void *)va_arg(the_arguments, unsigned long int));
+				void *ptr = va_arg(the_arguments, void *);
+				count += print_pointer(ptr);
 			}
 			else if (format[a] == '%')
 			{

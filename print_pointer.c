@@ -14,8 +14,7 @@ int print_pointer(void *ptr)
 
 	write(1, "0x", 2);
 	count += 2;
-	count += print_hex(value, 0);
-
+	count += print_hex(value, 1);
 	return (count);
 }
 
