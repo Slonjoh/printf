@@ -104,24 +104,20 @@ int _printf(const char *format, ...)
 			}
 			else if (format[a] == '+')
 			{
-				int plus = 0
+				char plus = va_arg(the_arguments, int);
 
-				plus = va_arg(the_arguments, int);
 				count += _plus_flag(plus);
 			}
 			else if (format[a] == ' ')
 			{
-				int space = 0;
+				char space = va_arg(the_arguments, int);
 
-				space = va_arg(the_arguments, int);
 				count += _space_flag(space);
-
 			}
 			else if (format[a] == '#')
 			{
-				int hash = 0;
+				char hash = va_arg(the_arguments, int);
 
-				hash = va_arg(the_arguments, int);
 				count += _hash_flag(hash);
 			}
 			else if (format[a] == '%')
