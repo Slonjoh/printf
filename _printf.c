@@ -97,6 +97,11 @@ int _printf(const char *format, ...)
 				str = va_arg(the_arguments, char *);
 				count += print_strings(str);
 			}
+			else if (format[a] == 'p')
+			{
+				void *ptr = va_arg(the_arguments, void *);
+				count += print_pointer(ptr);
+			}
 			else if (format[a] == '%')
 			{
 				write(1, &format[a], 1);
