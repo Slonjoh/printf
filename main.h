@@ -5,6 +5,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 
 #define BUFFER_SIZE 1024
 
@@ -30,5 +31,6 @@ void buf_write(buffer *buf);
 void buf_end(buffer *buf);
 int _printf(const char *format, ...);
 int _putchar(char c);
+
 
 #endif /*MAIN_H*/
