@@ -54,6 +54,11 @@ int _printf(const char *format, ...)
 				unsigned int value = va_arg(the_arguments, unsigned int);
 				count += print_binary(value);
 			}
+			else if (format[a] == 'd' || format[a] == 'i')
+			{
+				int value = va_arg(the_arguments, int);
+				count += print_int(value);
+			}
                         else if (format[a] == '%')
                         {
                                 write(1, &format[a], 1);

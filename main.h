@@ -30,6 +30,7 @@ void buf_write(buffer *buf);
 void buf_end(buffer *buf);
 int _printf(const char *format, ...);
 int print_binary(unsigned int n);
+int print_int(int n);
 int _putchar(char c);
 
 #endif /*MAIN_H*/
