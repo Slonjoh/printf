@@ -38,6 +38,9 @@ int print_hex(unsigned int n, int uppercase);
 int print_strings(char *str);
 int print_pointer(void *ptr);
 int _putchar(char c);
+int _plus_flag(int n);
+int _space_flag(int n);
+int _hash_flag(char c);
 
 
 #endif /*MAIN_H*/
