@@ -13,6 +13,8 @@ int _printf(const char *format, ...)
 	int a = 0;
 
 	va_start(the_arguments, format);
+	if (!format)
+		return (-1);
 	while (format[a] != '\0')
 	{
 		if (format[a] != '%')
