@@ -17,7 +17,10 @@ int _printf(const char *format, ...)
 	while (format[a] != '\0')
 	{
 		if (format[a] != '%')
+		{
 			_putchar(format[a]);
+			count++;
+		}
 		else
 		{
 			a++;
