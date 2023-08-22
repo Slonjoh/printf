@@ -102,19 +102,6 @@ int _printf(const char *format, ...)
 				void *ptr = va_arg(the_arguments, void *);
 				count += print_pointer(ptr);
 			}
-			else if (format[a] == 'R')
-			{
-				char *str = va_arg(the_arguments, char *);
-				int len = 0;
-				if (str)
-				{
-					str = rot13(str);
-					while (str[len] != '\0')
-						len++;
-					write(1, str, len);
-					count += len;
-				}
-			}
 			else if (format[a] == '%')
 			{
 				write(1, &format[a], 1);
