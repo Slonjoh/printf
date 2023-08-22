@@ -22,5 +22,5 @@ int put_string(char *str)
 		_putchar(str[lens]);
 		lens++;
 	}
-	return (lens + 1);
+	return (lens);
 }

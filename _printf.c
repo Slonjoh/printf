@@ -15,11 +15,12 @@ int _printf(const char *format, ...)
 	va_start(the_arguments, format);
 	while (format[a] != '\0')
 	{
-		if (format[a] == '%' && format[a + 1] == '\0')
+		if (format[a] == '\0')
 			return (-1);
 		if (format[a] != '%')
 		{
 			_putchar(format[a]);
+			count++;
 		}
 		else if (format[a + 1] == 'c')
 		{
