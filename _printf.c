@@ -24,14 +24,13 @@ int _printf(const char *format, ...)
 		else if (format[a + 1] == 'c')
 		{
 			_putchar(va_arg(the_arguments, int));
-			a++;
+			count++;
 		}
 		else if (format[a + 1] == 's')
 		{
 			int scount = 0;
 
 			scount = put_string(va_arg(the_arguments, char *));
-			a++;
 			count += scount;
 		}
 		else if (format[a + 1] == '%')
