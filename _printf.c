@@ -20,12 +20,11 @@ int _printf(const char *format, ...)
 		if (format[a] != '%')
 		{
 			_putchar(format[a]);
-			count++;
 		}
 		else if (format[a + 1] == 'c')
 		{
 			_putchar(va_arg(the_arguments, int));
-			count++;
+			a++;
 		}
 		else if (format[a + 1] == 's')
 		{
@@ -33,13 +32,13 @@ int _printf(const char *format, ...)
 
 			scount = put_string(va_arg(the_arguments, char *));
 			a++;
-			count += scount;
+			count += (scount - 1);
 		}
 		else if (format[a + 1] == '%')
 		{
 			_putchar('%');
-			count++;
 		}
+		count++;
 		a++;
 	}
 	va_end(the_arguments);
