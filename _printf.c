@@ -20,7 +20,7 @@ int _printf(const char *format, ...)
 			_putchar(format[a]);
 		else
 		{
-			format[a + 1];
+			format[a]++;
 			if (format[a] == '\0')
 				break;
 			if (format[a] == 'c')
