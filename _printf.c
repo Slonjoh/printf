@@ -1,46 +1,122 @@
 #include "main.h"
+#include <stdlib.h>
 /**
  * _printf - Produces output according to a format.
  * @format: The format string containing directives.
  *
  * Return: The number of characters printed (excluding the null byte).
  */
+
 int _printf(const char *format, ...)
 {
 	va_list the_arguments;
-	int count = 0, a = 0;
+	int count = 0;
+	int a;
+	char s;
+
+	va_start(the_arguments, format);
 
 	if (!format)
 		return (-1);
-	va_start(the_arguments, format);
-	while (format[a] != '\0')
+	for (a = 0; format[a] != '\0'; a++)
 	{
-		if (format[a] == '\0')
-			return (-1);
 		if (format[a] != '%')
 		{
-			_putchar(format[a]);
+			write(1, &format[a], 1);
+			count++;
 		}
-		else if (format[a + 1] == 'c')
+		else
 		{
-			_putchar(va_arg(the_arguments, int));
 			a++;
-		}
-		else if (format[a + 1] == 's')
-		{
-			int scount = 0;
+			if (format[a] == '\0')
+				break;
 
-			scount = put_string(va_arg(the_arguments, char *));
-			a++;
-			count += (scount - 1);
-		}
-		else if (format[a + 1] == '%')
-		{
-			_putchar('%');
-		}
-		count++;
-		a++;
-	}
+                        if (format[a] == 'c')
+                        {
+				s = va_arg(the_arguments, int);
+				write(1, &s, 1);
+				count++;
+                        }
+                        else if (format[a] == 's')
+                        {
+				char *str;
+
+                                str = va_arg(the_arguments, char *);
+                                if (str)
+                                {
+					int len;
+
+                                        len = 0;
+                                        while (str[len] != '\0')
+                                                len++;
+                                        write(1, str, len);
+                                        count += len;
+                                }
+                        }
+			else if (format[a] == 'b')
+			{
+				unsigned int value;
+
+				value = va_arg(the_arguments, unsigned int);
+				count += print_binary(value);
+			}
+			else if (format[a] == 'd' || format[a] == 'i')
+			{
+				int value;
+
+				value = va_arg(the_arguments, int);
+				count += print_int(value);
+			}
+			else if (format[a] == 'u')
+			{
+				unsigned int value;
+
+				value = va_arg(the_arguments, unsigned int);
+				count += print_unsigned(value);
+			}
+			else if (format[a] == 'o')
+			{
+				unsigned int value;
+
+				value = va_arg(the_arguments, unsigned int);
+				count += print_octal(value);
+			}
+			else if (format[a] == 'x' || format[a] == 'X')
+			{
+				unsigned int value;
+				int uppercase;
+
+				value = va_arg(the_arguments, unsigned int);
+				uppercase = (format[a] == 'X') ? 1 : 0;
+				count += print_hex(value, uppercase);
+			}
+			else if (format[a] == 'S')
+			{
+				char *str;
+
+				str = va_arg(the_arguments, char *);
+				count += print_strings(str);
+			}
+			else if (format[a] == 'p')
+			{
+				void *ptr = va_arg(the_arguments, void *);
+				count += print_pointer(ptr);
+			}
+			else if (format[a] == '%')
+			{
+				write(1, &format[a], 1);
+				count++;
+			}
+                        else
+                        {
+                                write(1, "%", 1);
+                                write(1, &format[a], 1);
+                                count += 2;
+                        }
+                }
+        }
+
+
 	va_end(the_arguments);
 	return (count);
 }
