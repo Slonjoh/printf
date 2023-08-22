@@ -32,7 +32,7 @@ void buf_end(buffer *buf);
 int _printf(const char *format, ...);
 int print_binary(unsigned int n);
 int print_int(int n);
-int print_unsignedva(unsigned int n);
+int print_unsigned(unsigned int n);
 int print_octal(unsigned int n);
 int print_hex(unsigned int n, int uppercase);
 int print_strings(char *str);
