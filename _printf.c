@@ -16,7 +16,7 @@ int _printf(const char *format, ...)
 
 	va_start(the_arguments, format);
 
-	if (format == NULL)
+	if (!format)
 		return (-1);
 	for (a = 0; format[a] != '\0'; a++)
 	{
@@ -31,28 +31,28 @@ int _printf(const char *format, ...)
 			if (format[a] == '\0')
 				break;
 
-			if (format[a] == 'c')
-			{
+                        if (format[a] == 'c')
+                        {
 				s = va_arg(the_arguments, int);
 				write(1, &s, 1);
 				count++;
-			}
-			else if (format[a] == 's')
-			{
+                        }
+                        else if (format[a] == 's')
+                        {
 				char *str;
 
-				str = va_arg(the_arguments, char *);
-				if (str)
-				{
+                                str = va_arg(the_arguments, char *);
+                                if (str)
+                                {
 					int len;
 
-					len = 0;
-					while (str[len] != '\0')
-						len++;
-					write(1, str, len);
-					count += len;
-				}
-			}
+                                        len = 0;
+                                        while (str[len] != '\0')
+                                                len++;
+                                        write(1, str, len);
+                                        count += len;
+                                }
+                        }
 			else if (format[a] == 'b')
 			{
 				unsigned int value;
@@ -72,7 +72,7 @@ int _printf(const char *format, ...)
 				unsigned int value;
 
 				value = va_arg(the_arguments, unsigned int);
-				count += print_unsignedva(value);
+				count += print_unsigned(value);
 			}
 			else if (format[a] == 'o')
 			{
@@ -100,7 +100,6 @@ int _printf(const char *format, ...)
 			else if (format[a] == 'p')
 			{
 				void *ptr = va_arg(the_arguments, void *);
-
 				count += print_pointer(ptr);
 			}
 			else if (format[a] == '%')
@@ -108,14 +107,14 @@ int _printf(const char *format, ...)
 				write(1, &format[a], 1);
 				count++;
 			}
-			else
-			{
-				write(1, "%", 1);
-				write(1, &format[a], 1);
-				count += 2;
-			}
-		}
-	}
+                        else
+                        {
+                                write(1, "%", 1);
+                                write(1, &format[a], 1);
+                                count += 2;
+                        }
+                }
+        }
 
 
 	va_end(the_arguments);
