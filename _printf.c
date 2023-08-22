@@ -109,9 +109,7 @@ int _printf(const char *format, ...)
 				str = va_arg(the_arguments, char *);
 				if (str)
 				{
-					int len;
-					reverse(str);
-					len = strlen(str);
+					int len = strlen(str);
 					write(1, str, len);
 					count += len;
 				}
