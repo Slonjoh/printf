@@ -9,8 +9,7 @@
 int _printf(const char *format, ...)
 {
 	va_list the_arguments;
-	int count = 0;
-	int a = 0;
+	int count = 0, a = 0;
 
 	va_start(the_arguments, format);
 	if (format == NULL)
@@ -18,9 +17,7 @@ int _printf(const char *format, ...)
 	while (format[a] != '\0')
 	{
 		if (format[a] != '%')
-		{
 			count += _putchar(format[a]);
-		}
 		else
 		{
 			a++;
@@ -41,6 +38,10 @@ int _printf(const char *format, ...)
 			else if (format[a] == '%')
 			{
 				count += _putchar('%');
+			}
+			else
+			{
+				count += _putchar(format[a]);
 			}
 		}
 		a++;
