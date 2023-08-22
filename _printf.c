@@ -13,7 +13,7 @@ int _printf(const char *format, ...)
 	int a = 0;
 
 	va_start(the_arguments, format);
-	if (!format)
+	if (format == NULL)
 		return (-1);
 	while (format[a] != '\0')
 	{
@@ -23,7 +23,7 @@ int _printf(const char *format, ...)
 		}
 		else
 		{
-			format++;
+			a++;
 			if (format[a] == '\0')
 				break;
 			if (format[a] == 'c')
@@ -43,7 +43,7 @@ int _printf(const char *format, ...)
 				count += _putchar('%');
 			}
 		}
-		format++;
+		a++;
 	}
 	va_end(the_arguments);
 	return (count);
