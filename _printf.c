@@ -110,8 +110,13 @@ int _printf(const char *format, ...)
 				if (str)
 				{
 					int len = strlen(str);
-					write(1, str, len);
-					count += len;
+					int i;
+
+					for (i = len - 1; i >= 0; i--)
+					{
+						write(1, &str[i], 1);
+						count++;
+					}
 				}
 			}
 			else if (format[a] == '%')

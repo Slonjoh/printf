@@ -37,7 +37,6 @@ int print_octal(unsigned int n);
 int print_hex(unsigned int n, int uppercase);
 int print_strings(char *str);
 int print_pointer(void *ptr);
-void reverse(char *str);
 int _putchar(char c);
 int put_string(char *str);
 
