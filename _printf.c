@@ -102,6 +102,20 @@ int _printf(const char *format, ...)
 				void *ptr = va_arg(the_arguments, void *);
 				count += print_pointer(ptr);
 			}
+			else if (format[a] == 'r')
+			{
+				char *str;
+
+				str = va_arg(the_arguments, char *);
+				if (str)
+				{
+					int len;
+					reverse(str);
+					len = strlen(str);
+					write(1, str, len);
+					count += len;
+				}
+			}
 			else if (format[a] == '%')
 			{
 				write(1, &format[a], 1);
