@@ -14,26 +14,19 @@ int print_strings(char *str)
 	if (str)
 	{
 		int len;
-		char buffer[5];
 
 		for (len = 0; str[len] != '\0'; len++)
 		{
-			if (str[len] == '\n')
-			{
-				buffer[0] = '\\';
-				buffer[1] = 'x';
-				buffer[2] = '0';
-				buffer[3] = 'A';
-				write(1, buffer, 4);
-				count += 4;
-			}
+			 if (str[len] == '\n')
+                        {
+                                write(1, "\\x0A", 4);
+                                count += 4;
+                        }
 			else if (str[len] < 32 || str[len] >= 127)
 			{
-				buffer[0] = '\\';
-				buffer[1] = 'x';
+				write(1, "\\x", 2);
 				count += 2;
-				count += print_hex((unsigned char)str[len], 1, buffer + 2);
-				write(1, buffer, count);
+				count += print_hex((unsigned char)str[len], 1);
 			}
 			else
 			{
@@ -44,4 +37,3 @@ int print_strings(char *str)
 	}
 	return (count);
 }
-
