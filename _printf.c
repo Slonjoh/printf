@@ -23,8 +23,9 @@ int _printf(const char *format, ...)
 		}
 		else
 		{
-			a++;
-
+			format++;
+			if (format[a] == '\0')
+				break;
 			if (format[a] == 'c')
 			{
 				char c = va_arg(the_arguments, int);
@@ -42,7 +43,7 @@ int _printf(const char *format, ...)
 				count += _putchar('%');
 			}
 		}
-		a++;
+		format++;
 	}
 	va_end(the_arguments);
 	return (count);
