@@ -11,19 +11,16 @@ int _printf(const char *format, ...)
 	va_list the_arguments;
 	int count = 0, a = 0;
 
-	va_start(the_arguments, format);
 	if (format == NULL)
 		return (-1);
+	va_start(the_arguments, format);
 	while (format[a] != '\0')
 	{
 		if (format[a] != '%')
-		{
 			_putchar(format[a]);
-			count++;
-		}
 		else
 		{
-			a++;
+			format[a + 1];
 			if (format[a] == '\0')
 				break;
 			if (format[a] == 'c')
