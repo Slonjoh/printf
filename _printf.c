@@ -5,7 +5,6 @@
  *
  * Return: The number of characters printed (excluding the null byte).
  */
-
 int _printf(const char *format, ...)
 {
 	va_list the_arguments;
@@ -24,8 +23,6 @@ int _printf(const char *format, ...)
 		else
 		{
 			a++;
-			if (format[a] == '\0')
-				break;
 			if (format[a] == 'c')
 			{
 				char c = va_arg(the_arguments, int);
