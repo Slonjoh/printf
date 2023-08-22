@@ -9,20 +9,31 @@
 
 int print_strings(char *str)
 {
-	int len = 0;
+	int count = 0;
+
 	if (str)
 	{
-		while (str[len] != '\0')
+		int len;
+
+		for (len = 0; str[len] != '\0'; len++)
 		{
-			if (str[len] >= 32 && str[len] < 127)
+			 if (str[len] == '\n')
+                        {
+                                write(1, "\\x0A", 4);
+                                count += 4;
+                        }
+			else if (str[len] < 32 || str[len] >= 127)
 			{
-				write(1, &str[len], 1);
+				write(1, "\\x", 2);
+				count += 2;
+				count += print_hex((unsigned char)str[len], 1);
 			}
 			else
-				printf("\\x%02X", (unsigned char)str[len]);
+			{
+				write(1, &str[len], 1);
+				count++;
+			}
 		}
-		len++;
 	}
-
-return (len);
+	return (count);
 }
