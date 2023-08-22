@@ -7,7 +7,7 @@
  * Return: Number of characters printed.
  */
 
-int print_unsigned(unsigned int n)
+int print_unsignedva(unsigned int n)
 {
 	int len;
 	char buffer[20];
