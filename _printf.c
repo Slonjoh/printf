@@ -119,19 +119,6 @@ int _printf(const char *format, ...)
 					}
 				}
 			}
-			else if (format[a] == 'R')
-			{
-				char *str;
-
-				str = va_arg(the_arguments, char *);
-				if (str)
-				{
-					char *rot13_str = rot13(str);
-					int len = strlen(rot13_str);
-					write(1, rot13_str, len);
-					count += len;
-				}
-			}
 			else if (format[a] == '%')
 			{
 				write(1, &format[a], 1);
